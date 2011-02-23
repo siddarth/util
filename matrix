@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
 
+# FIXME: get screen size.
 LINE_SIZE = 178
 
 row = Array.new(LINE_SIZE)
 
+# FIXME: chinese character
 row.map!{40.+(rand(45)).chr}.join
 
 while true
