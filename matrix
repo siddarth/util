@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+LINE_SIZE = 178
+
+row = Array.new(LINE_SIZE)
+
+row.map!{40.+(rand(45)).chr}.join
+
+while true
+    print row
+    sleep 0.05
+    $stdout.flush
+    
+    def generate_new_char(c)
+        p = rand(25)
+        return ((40. + rand(45)).chr) if p < 10
+        return c
+    end
+
+    row.map! { |c| generate_new_char(c) }
+end

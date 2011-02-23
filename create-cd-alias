@@ -1,0 +1,18 @@
+#!/usr/bin/ruby
+
+raise 'Usage: create-cd-alias <directory> <alias>' if ARGV.length != 2
+raise 'Specified destination is not a directory' if not File.directory?(ARGV[0])
+
+dest = ARGV[0]
+new_alias = ARGV[1]
+
+cur_dir = Dir.getwd
+
+dest_path = cur_dir + "/#{dest}"
+
+bash_path = ENV['HOME']+ '/.bash_profile'
+print bash_path
+
+f = File.open(bash_path, 'a')
+f.write("alias #{new_alias}='cd #{dest_path}'\n")
+f.close
