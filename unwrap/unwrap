@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+raise "Usage: ./unwrap input output" if ARGV.length != 2
+
+input_file = ARGV[0]
+content = File.read(input_file).split("\n").map { |line| line.strip }
+output = ""
+content.each { |line|
+  if (line == "")
+    output += "\n\n"
+  else
+    output += line + " "
+  end
+}
+
+File.open(ARGV[1], 'w') { |f| f.write(output) }
