@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+class Semiotics
+
+  EXCLUDE = [".", ".git", ".."]
+
+  def dir_contents_to_s(d)
+    Dir.entries(d).join(", ")
+  end
+
+  def initialize(source_dir, dest_dir)
+    @source, @dest = source_dir, dest_dir
+
+    raise ArgumentError,
+          "Source is not a directory." unless Dir.exists?(@dest)
+    raise ArgumentError,
+          "Source is not a directory." unless Dir.exists?(@dest)
+
+    puts "About to set up symlinks from #{@source} to #{@dest}."
+
+    files = dir_contents_to_s(@source)
+    puts "Semiotics sees the following files in #{@source}: #{files}."
+
+    ask "Would you like to add a prefix or the suffix to the new file names?",
+        { "prefix" => :prefix, "suffix" => :suffix }
+  end
+
+  def prefix
+    print "Type the string you would like to prefix: "
+    p = STDIN.gets.strip
+    Dir.foreach(@source) { |file|
+      next if EXCLUDE.include? file
+      File.symlink("#{@source}/#{file}", "#{@dest}/#{p}#{file}")
+    }
+  end
+
+  def suffix
+    print "Type the string you would like to suffix: "
+    s = STDIN.gets.strip
+    Dir.foreach(@source) { |file|
+      next if EXCLUDE.include? file
+      f = File.symlink("#{@source}/#{file}", "#{@dest}/#{file}#{s}")
+    }
+  end
+
+  def ask(q, opts)
+    res = nil
+    raise ArgumentError, "Options cannot be nil." if opts.nil?
+    keys = opts.keys
+
+    while (true)
+      s = "#{q} [#{keys.join(" | ")}]: "
+      print s
+      res = STDIN.gets.strip
+      if keys.include? res
+        break
+      else
+        print "Invalid input: #{res}. keys = #{keys}"
+      end
+    end
+    self.send(opts[res])
+    res
+  end
+end
+
+
+raise "Usage: ./semiotics source destination" unless
+      ARGV.length == 2
+
+Semiotics.new(ARGV[0], ARGV[1])
