@@ -1,0 +1,15 @@
+Semiotics
+n. (used with a sing. verb)
+The theory and study of signs and symbols
+
+Semiotics is a utility to set up symlinks from a directory to another with the
+ability to add suffixes and prefixes to the filenames in the new directory.
+
+It attempts to tackle the issue of being able to carry around configurations
+in a sane manner. Ultimately, the goal is to provide a gem that can pull from
+git repos, and update dot files like your vimrc, etc.
+
+Warning:
+Code is ugly, untested, and severely Dayquil-induced.
+I can provide no guarantees about the workings (seems fine when I ran some
+simple tests). It probably can also use some (a lot of) refactoring.
