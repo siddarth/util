@@ -16,19 +16,65 @@ max ||= 80
 max = to_int(max)
 
 original_text = STDIN.read
-original_text = original_text.split("\n").map { |l| l.strip }.join(' ')
 
+# Generate a naive score for any wrapped text. This is
+# currently just the sum of the differences between the
+# length of each line and the longest line in the text.
+#
+# Since we want to penalize large spaces at the end of a
+# line more, we use the cube of the difference between the
+# longest line in the text, and each line.
 def score(text)
   text_array = text.split("\n")
   max_line_length = 0
   text_array.each { |l| max_line_length = l.length if l.length > max_line_length}
   score = 0
   text_array.each { |l|
-    score += max_line_length - l.length
+    score += (max_line_length - l.length)**3
   }
   score
 end
 
+def justify(text)
+
+  def get_line(words, num_extra_spaces)
+    res = words.join(" "), "\n" if num_extra_spaces == 0
+    res
+    spaces = Array.new(words.length, 1)
+    # TODO: distribute spaces more nicely.
+    until num_extra_spaces == 0
+      spaces.each_index do |i|
+        break if num_extra_spaces == 0
+        spaces[i] += 1
+        num_extra_spaces -= 1
+      end
+    end
+    res = ""
+    words.each_index do |i|
+      res += words[i]
+      res += " "*spaces[i]
+    end
+    res + "\n"
+  end
+
+  # Get longest line, and justify the rest to that.
+  max_line_length = 0
+  text.split("\n").each { |l| max_line_length = l.length if l.length > max_line_length}
+
+  # Justify.
+  text.split("\n").map do |line|
+    words = line.split(" ").map { |w| w.strip }
+    num_spaces = max_line_length - line.strip.length
+
+    get_line(words, num_spaces)
+  end
+end
+
+# Given some text, and a size, wrap the text to that size.
+# This doesn't do any clever justification, just skip to the
+# next line.
+#
+# FIXME: greedy = stupid. dynamic programming goes here.
 def wrap_text(text, size)
   text = text.split(" ")
   wrapped_text = ""
@@ -36,7 +82,8 @@ def wrap_text(text, size)
   text.each { |word|
     if (word.length + 1 + current_line_size > size)
       wrapped_text += "\n"
-      current_line_size = 0
+      wrapped_text += word
+      current_line_size = word.length
     else
       wrapped_text += " " unless current_line_size == 0
       wrapped_text += "#{word}"
@@ -46,19 +93,23 @@ def wrap_text(text, size)
   wrapped_text
 end
 
-min_score = 5000 # fixme: use max int
+min_score = 500000 # fixme: use max int
 min_wrap = 0
 
+original_paras = original_text.split("\n")
+
 for i in min..max
-  if (i % 5 == 0)
-    puts "Trying i = #{i}. Min score so far is: #{min_score}."
-  end
-  wrapped = wrap_text(original_text, i)
-  score = score(wrapped)
-  if (score < min_score)
-    min_score = score
-    min_wrap = i
-  end
+  score = 0
+  original_paras.each { |t|
+    wrapped = wrap_text(t, i)
+    score += score(wrapped)
+    if (score < min_score)
+      min_score = score
+      min_wrap = i
+    end
+  }
 end
 
-puts wrap_text(original_text, 30)
+puts "="*max
+original_paras.each { |t| print justify(wrap_text(t, min_wrap)), "\n" }
+puts "="*max
