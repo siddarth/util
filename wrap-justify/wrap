@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-raise "Usage: ./wrap minimum_size = 40 [maximum_size = 80]" unless ARGV.length > 0
+raise "Usage: ruby wrap minimum_size = 40 [maximum_size = 80]" unless ARGV.length > 0
 
 def to_int(x)
   begin
