@@ -5,13 +5,13 @@ Written for @a_a.
 
 == USAGE
 
-	$ ruby wrap minimum_size [maximum_size]
+  $ ruby wrap minimum_size [maximum_size]
 
 The default minimum_size = 40, and the default maximum_size = 80.
 
 == Example
 
-	$ ruby wrap 20
+  $ ruby wrap 20
 
 Creates a new class, named by aString, containing accessor methods for the given symbols. If the name aString is omitted, an anonymous structure class will be created. Otherwise, the name of this struct will appear as a constant in class Struct, so it must be unique for all Structs in the system and should start with a capital letter. Assigning a structure class to a constant effectively gives the class the name of the constant.
 
