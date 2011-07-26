@@ -113,6 +113,8 @@ for i in min..max
   }
 end
 
-puts "\n=\n"*max
+print "\n"
+puts "="*max
+print "\n"
 original_paras.each { |t| print justify(wrap_text(t, min_wrap)), "\n" }
 puts "="*max
