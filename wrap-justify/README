@@ -11,33 +11,36 @@ The default minimum_size = 40, and the default maximum_size = 80.
 
 == Example
 
-  $ ruby wrap 20
+  $ ruby wrap 10
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis mi ac eros mollis tempus. Morbi ut ligula imperdiet augue iaculis ullamcorper. Sed euismod, nulla sit amet blandit euismod, massa ante rhoncus nulla, et pharetra urna augue ac purus. Quisque pellentesque lorem vel mauris fermentum suscipit. Morbi dictum ligula risus, ut tincidunt dolor. Nulla et magna neque. Ut non ligula a odio iaculis dignissim at sit amet nulla. Integer lacinia libero in risus mollis iaculis. Nulla massa magna, congue ut suscipit ut, pulvinar vitae nulla. Pellentesque lectus erat, iaculis et blandit in, bibendum vel nisi. Praesent vehicula elit neque. Quisque malesuada eros in dolor mollis eu hendrerit nibh pharetra. Praesent vitae faucibus est.
 
-Creates a new class, named by aString, containing accessor methods for the given symbols. If the name aString is omitted, an anonymous structure class will be created. Otherwise, the name of this struct will appear as a constant in class Struct, so it must be unique for all Structs in the system and should start with a capital letter. Assigning a structure class to a constant effectively gives the class the name of the constant.
-
-Struct::new returns a new Class object, which can then be used to create specific instances of the new structure. The number of actual parameters must be less than or equal to the number of attributes defined for this class; unset parameters default to nil. Passing too many parameters will raise an ArgumentError.
-
-The remaining methods listed in this section (class and instance) are defined for this generated class.
+Etiam sem metus, adipiscing in iaculis non, faucibus id massa. In vel elit enim. Maecenas at neque diam, vel tempor leo. Quisque sit amet sagittis arcu. Mauris quis enim purus, non convallis velit. Sed ligula tellus, convallis non sodales ac, commodo sed augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi condimentum porttitor libero. Donec odio lacus, ultrices at vestibulum vitae, consequat non urna. Suspendisse eget lorem ut ipsum rhoncus condimentum at vel metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi at sem ligula. Cras sollicitudin pellentesque turpis.
 
 ================================================================================
-Creates  a  new  class,  named  by  aString,  containing accessor
-methods  for  the  given symbols. If the name aString is omitted,
-an  anonymous  structure  class  will  be created. Otherwise, the
-name of this struct will appear as a constant in class Struct, so
-it  must be unique for all Structs in the system and should start
-with  a  capital  letter.  Assigning  a  structure  class  to  a
-constant  effectively  gives  the class the name of the constant.
+
+Lorem  ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis
+mi  ac  eros  mollis tempus. Morbi ut ligula imperdiet augue iaculis
+ullamcorper. Sed euismod, nulla sit amet blandit euismod, massa ante
+rhoncus nulla, et pharetra urna augue ac purus. Quisque pellentesque
+lorem  vel  mauris fermentum suscipit. Morbi dictum ligula risus, ut
+tincidunt  dolor. Nulla et magna neque. Ut non ligula a odio iaculis
+dignissim  at sit amet nulla. Integer lacinia libero in risus mollis
+iaculis.  Nulla  massa  magna, congue ut suscipit ut, pulvinar vitae
+nulla. Pellentesque lectus erat, iaculis et blandit in, bibendum vel
+nisi.  Praesent vehicula elit neque. Quisque malesuada eros in dolor
+mollis eu hendrerit nibh pharetra. Praesent vitae faucibus est.
 
 
-Struct::new  returns  a new Class object, which can then be used
-to  create  specific  instances of the new structure. The number
-of actual parameters must be less than or equal to the number of
-attributes  defined  for  this  class;  unset parameters default
-to   nil.   Passing   too   many   parameters   will  raise  an
-ArgumentError.
-
-
-The remaining methods listed in this section (class and
-instance)   are  defined  for  this  generated  class.
+Etiam sem metus, adipiscing in iaculis non, faucibus id massa. In vel
+elit  enim.  Maecenas at neque diam, vel tempor leo. Quisque sit amet
+sagittis  arcu.  Mauris  quis  enim  purus,  non convallis velit. Sed
+ligula  tellus,  convallis  non  sodales ac, commodo sed augue. Class
+aptent  taciti  sociosqu  ad  litora torquent per conubia nostra, per
+inceptos  himenaeos.  Morbi  condimentum porttitor libero. Donec odio
+lacus,   ultrices   at   vestibulum   vitae,   consequat  non  urna.
+Suspendisse eget lorem ut ipsum rhoncus condimentum at vel metus. Cum
+sociis  natoque  penatibus  et magnis dis parturient montes, nascetur
+ridiculus  mus.  Morbi  at sem ligula. Cras sollicitudin pellentesque
+turpis.
 
 ================================================================================
