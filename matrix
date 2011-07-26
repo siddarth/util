@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # FIXME: get screen size.
-LINE_SIZE = 178
+LINE_SIZE = 156
 
 row = Array.new(LINE_SIZE)
 
@@ -12,7 +12,7 @@ while true
     print row
     sleep 0.05
     $stdout.flush
-    
+
     def generate_new_char(c)
         p = rand(25)
         return ((40. + rand(45)).chr) if p < 10

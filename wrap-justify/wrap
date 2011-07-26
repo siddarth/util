@@ -38,8 +38,7 @@ end
 def justify(text)
 
   def get_line(words, num_extra_spaces)
-    res = words.join(" "), "\n" if num_extra_spaces == 0
-    res
+    return words.join(" "), "\n" if num_extra_spaces == 0
     spaces = Array.new(words.length, 1)
     # TODO: distribute spaces more nicely.
     until num_extra_spaces == 0
@@ -62,11 +61,15 @@ def justify(text)
   text.split("\n").each { |l| max_line_length = l.length if l.length > max_line_length}
 
   # Justify.
-  text.split("\n").map do |line|
+  text.split("\n").each_with_index.map do |line, index|
     words = line.split(" ").map { |w| w.strip }
     num_spaces = max_line_length - line.strip.length
 
-    get_line(words, num_spaces)
+    if index == text.split("\n").length - 1
+      words.join(" ") + "\n"
+    else
+      get_line(words, num_spaces)
+    end
   end
 end
 
