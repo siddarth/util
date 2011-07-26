@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+
+raise "Usage: ./wrap minimum_size = 40 [maximum_size = 80]" unless ARGV.length > 0
+
+def to_int(x)
+  begin
+    Float(x).to_i
+  rescue
+    raise ArgumentError, "Sizes should be valid numbers"
+  end
+end
+
+# sane defaults
+min, max = to_int(ARGV[0]), ARGV[1]
+max ||= 80
+max = to_int(max)
+
+original_text = STDIN.read
+original_text = original_text.split("\n").map { |l| l.strip }.join(' ')
+
+def score(text)
+  text_array = text.split("\n")
+  max_line_length = 0
+  text_array.each { |l| max_line_length = l.length if l.length > max_line_length}
+  score = 0
+  text_array.each { |l|
+    score += max_line_length - l.length
+  }
+  score
+end
+
+def wrap_text(text, size)
+  text = text.split(" ")
+  wrapped_text = ""
+  current_line_size = 0
+  text.each { |word|
+    if (word.length + 1 + current_line_size > size)
+      wrapped_text += "\n"
+      current_line_size = 0
+    else
+      wrapped_text += " " unless current_line_size == 0
+      wrapped_text += "#{word}"
+      current_line_size += word.length
+    end
+  }
+  wrapped_text
+end
+
+min_score = 5000 # fixme: use max int
+min_wrap = 0
+
+for i in min..max
+  if (i % 5 == 0)
+    puts "Trying i = #{i}. Min score so far is: #{min_score}."
+  end
+  wrapped = wrap_text(original_text, i)
+  score = score(wrapped)
+  if (score < min_score)
+    min_score = score
+    min_wrap = i
+  end
+end
+
+puts wrap_text(original_text, 30)
