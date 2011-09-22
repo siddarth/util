@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+# Siddarth Chandrasekaran 2011
+# Pull a bunch of pdfs from a page. Hardcoded the 261 links.
+
+require 'rubygems'
+require 'mechanize'
+
+raise "Usage: ./paperboy URL [DESTINATION DIRECTORY]" if ARGV.length == 0
+
+url = ARGV[0]
+
+a = Mechanize.new { |agent|
+  agent.user_agent_alias = 'Mac Safari'
+}
+
+def get_link(l)
+  ARGV[1].nil? ? `wget #{l}` : `wget -O #{ARGV[1]}/#{l.split('/')[-1]} #{l}`
+end
+
+a.get(url) do |page|
+  page.links.each do |link|
+
+    href = link.href
+    next unless href.include? ".pdf"
+
+    print "Getting paper #{link.text}...\n"
+    href = url.split('/')[0..-2].join('/') + "/#{href}" unless href.include? "http"
+
+    get_link(href)
+
+  end
+end

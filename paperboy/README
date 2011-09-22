@@ -1,0 +1,27 @@
+== About
+
+paperboy is used to download a bunch of pdfs from a page from the command
+line.
+
+Written by Siddarth Chandrasekaran in September 2011.
+
+== Usage
+
+    $ ./paperboy URL [DESTINATION]
+
+paperboy deals with absolute and relative links, and will download all the
+pdfs on that page.
+
+== Example
+
+    $ ./paperboy http://read.seas.harvard.edu/cs261/2011/schedule.html papers/
+    Getting paper “The Evolution of the Unix Time-sharing System”...
+    --2011-09-22 03:06:19--  http://read.seas.harvard.edu/cs261/papers/ritchie84evolution.pdf
+    Resolving read.seas.harvard.edu... 140.247.173.41
+    Connecting to read.seas.harvard.edu|140.247.173.41|:80... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 30159 (29K) [application/pdf]
+    Saving to: `papers//ritchie84evolution.pdf'
+
+    ...
+    ...
