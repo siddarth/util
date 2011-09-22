@@ -1,0 +1,18 @@
+== About
+
+Carmen is a simple utility used to submit to Google forms programatically.
+Written by Siddarth Chandrasekaran in September 2011.
+
+== Usage
+
+First, rename the file sample-carmen.conf to carmen.conf
+$ mv sample-carmen.conf carmen.conf
+
+Edit carmen.conf to specify the url of the actual Google form.
+
+Edit the files carmen and carmen.rb to deal with the correct order, and number
+of fields.
+
+???
+
+Profit!
