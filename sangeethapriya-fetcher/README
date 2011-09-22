@@ -1,0 +1,12 @@
+== Usage
+
+This script can be used to download music from Sangeethapriya.org using the
+command line.
+
+Usage:
+       ./sangeethapriya-fetcher [options]
+where [options] are:
+       --url, -u <s>:   URL of the file.
+  --filename, -f <s>:   Specify a file name to download to.
+       --version, -v:   Print version and exit
+          --help, -h:   Show this message
