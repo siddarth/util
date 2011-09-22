@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+require 'mechanize'
+require 'trollop'
+
+opts = Trollop::options do
+  version 'sangeethapriya-fetcher 1.0.0 by Siddarth Chandrasekaran (2011)'
+  banner <<-EOS
+This script can be used to download music from Sangeethapriya.org using the
+command line.
+
+Usage:
+       ./sangeethapriya-fetcher [options]
+where [options] are:
+EOS
+  opt :url, 'URL of the file.', :type => String, :required => true
+  opt :filename, 'Specify a file name to download to.', :type => String
+end
+
+def get_file_name_from_url(url)
+  url.split("/")[-1]
+end
+
+url = opts[:url]
+filename = opts[:filename] || get_file_name_from_url(url)
+filename += '.mp3' unless filename.end_with? '.mp3'
+
+puts "Downloading file %s. This could take a while..." % filename
+
+exit(0)
+
+a = Mechanize.new { |agent|
+  agent.user_agent_alias = 'Mac Safari'
+  agent.pluggable_parser.pdf = Mechanize::FileSaver
+}
+
+def spoof(uri)
+  Mechanize::Page.new(uri, {'content-type' => 'text/html' })
+end
+
+ref = 'http://sangeethapriya.org'
+begin
+  a.get(:url => url, :referer => ref).save_as(filename)
+rescue
+  raise 'Unable to download file. Check the URL.'
+end
+
+puts "Download success."
