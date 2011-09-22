@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require File.expand_path('../carmen.rb', __FILE__)
+
+raise "Usage: ./carmen country name email" unless ARGV.length == 3
+Carmen.new(ARGV[0], ARGV[1], ARGV[2]).submit_form()
