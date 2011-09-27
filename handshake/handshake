@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require 'mechanize'
+require 'trollop'
+
+banner = <<EOS
+This script is used to generate a templated email while\nmaking introductions.
+
+Usage:
+       ./handshake PERSON1 PERSON2
+EOS
+
+if ARGV.length != 2
+  puts banner
+  exit(0)
+end
+
+person1 = ARGV[0].capitalize
+person2 = ARGV[1].capitalize
+
+subject = "Subject: #{person1}, #{person2}; #{person2}, #{person1}"
+
+email = "    Just wanted to put you two in touch with each other.\n\n"
+email += "    #{person1}, #{person2} is\n\n"
+email += "    #{person2}, #{person1} is\n\n"
+email += "    I'll let you two take it from here -- no need to cc me on your conversation. :-)\n\nSiddarth"
+
+puts "\n\n#{subject}\n\n#{email}"

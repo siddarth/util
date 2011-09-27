@@ -1,0 +1,20 @@
+== About
+
+This script is used to generate a templated email while making introductions. Written by Siddarth Chandrasekaran in 2011.
+
+Usage:
+       ./handshake PERSON1 PERSON2
+
+== Usage
+
+    $ ./handshake Bob Alice
+
+Subject: Bob, Alice; Alice, Bob
+
+    Just wanted to put you two in touch with each other.
+
+    Bob, Alice is
+
+    Alice, Bob is
+
+    I'll let you two take it from here -- no need to cc me on your conversation. :-)
