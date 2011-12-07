@@ -27,6 +27,7 @@ end
       num_tweets += 1
       total_time += (response_time - original_time)
       if (num_tweets % 100 == 0)
+        print_stats(total_time, num_tweets)
       end
     }
   rescue Exception => e
